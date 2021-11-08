@@ -5,7 +5,7 @@ on:
     inputs:
       lint_command:
         description: The command to run for linting. Defaults to `npx eslint "**/*.js" --ignore-path .gitignore`. This will respect your local eslint config and ignore anything defined in your .gitignore e.g. `node_modules`.
-        default: npx eslint {0} {1}
+        default: npx eslint "{0}" {1}
         required: false
         type: string
       lint_globs:
@@ -20,7 +20,7 @@ on:
         type: string
       prettier_command:
         description: The command to run to check the code has been beautified. Defaults to `npx prettier "**/*.{js,css,md,yml,json}" --check --ignore-path .gitignore`. This will respect your local prettier config and ignore anything defined in your .gitignore e.g. `node_modules`.
-        default: npx prettier {0} --check {1}
+        default: npx prettier "{0}" --check {1}
         required: false
         type: string
       prettier_globs:
