@@ -1,0 +1,21 @@
+name: JS lint Reusable Workflow Example
+
+on: workflow_dispatch
+
+jobs:
+  example-defaults:
+    uses: fena-co/actions/.github/workflows/js-lint.yml@eb5d843d1922f401d802003008e0a480bc3f32b0
+
+  example-custom-globs-args:
+    uses: fena-co/actions/.github/workflows/js-lint.yml@eb5d843d1922f401d802003008e0a480bc3f32b0
+    with:
+      lint_globs: src/**.js
+      lint_args: --ignore-path .eslintignore
+      prettier_globs: src/**.{yml}
+      prettier_args: --ignore-path .prettierignore
+
+  example-custom-command:
+    uses: fena-co/actions/.github/workflows/js-lint.yml@eb5d843d1922f401d802003008e0a480bc3f32b0
+    with:
+      lint_command: noop
+      prettier_command: noop
