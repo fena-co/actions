@@ -42,5 +42,5 @@ See [this example](../../.github/workflows/setup-js-env.example.yml) for how to 
 | `fetch-depth` | Proxies the Githubs actions/checkout@v2 config.
 | `submodules` | Proxies to Githubs actions/checkout@v2 config.
 | `node-version` | The version of node to install. It will automatically attempt to extract the node version from the engines field in package.json and that always takes precedence. Defaults to `lts/*` (latest LTS release).
-| `package-manager` | The package manager used to cache project dependencies. One of `npm || yarn || pnpm` . Only change this if you are using a custom install-command for these managers. Defaults to npm.
+| `package-manager` | The package manager used to cache project dependencies. One of `npm \| yarn \| pnpm` . Only change this if you are using a custom install-command for these managers. Defaults to npm.
 | `install-command` | Overwrite the dependency install command. Defaults to `npm ci --ignore-scripts`.
