@@ -29,12 +29,12 @@ jobs:
   some-job:
     runs-on: ubuntu-latest
     steps:
-      - uses: fena-co/actions/composite/setup-js-env.yml@<tag/ref/branch>
+      - uses: fena-co/actions/composite/setup-js-env@<tag/ref/branch>
 ```
 
 ### Customising
 
-See [this example](../.github/workflows/setup-js-env.example.yml) for how to specify options.
+See [this example](../../.github/workflows/setup-js-env.example.yml) for how to specify options.
 
 | Param | Description |
 |:------|:------------|

@@ -9,12 +9,12 @@ jobs:
   example-defaults:
     runs-on: ubuntu-latest
     steps:
-      - uses: fena-co/actions/composite/setup-js-env.yml@feature/setup-node-env-composite-action
+      - uses: fena-co/actions/composite/setup-js-env@feature/setup-node-env-composite-action
 
   example-options:
     runs-on: ubuntu-latest
     steps:
-      - uses: fena-co/actions/composite/setup-js-env.yml@feature/setup-node-env-composite-action
+      - uses: fena-co/actions/composite/setup-js-env@feature/setup-node-env-composite-action
         with:
           branch: develop
           fetch-depth: 0
@@ -27,5 +27,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - id: foo
-        uses: fena-co/actions/composite/setup-js-env.yml@feature/setup-node-env-composite-action
+        uses: fena-co/actions/composite/setup-js-env@feature/setup-node-env-composite-action
       - run: echo node-version ${{ steps.foo.outputs.node-version }}
