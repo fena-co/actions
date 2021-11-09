@@ -33,7 +33,7 @@ outputs:
     value: ${{ steps.node-version.outputs.version || inputs.node-version }}
 
 runs:
-  using: composite
+  using: "composite"
   steps:
     - uses: actions/checkout@v2
       name: Checkout
