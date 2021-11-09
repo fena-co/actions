@@ -1,0 +1,56 @@
+name: Setup JS Env
+description: Configures the CI environment for a JS project, checks out the current branch, installs node, installs dependencies and caches them. Assumes running in an environment that supports bash.
+
+inputs:
+  branch:
+    description: Proxies the Githubs actions/checkout@v2 config. The default is the branch that trigged the containing workflow.
+    required: false
+    default: ${{ github.repository }}
+  fetch-depth:
+    description: Proxies the Githubs actions/checkout@v2 config.
+    required: false
+    default: 1
+  submodules:
+    description: Proxies to Githubs actions/checkout@v2 config.
+    required: false
+    default: false
+  node-version:
+    description: The version of node to install. It will automatically attempt to extract the node version from the engines field in package.json and that always takes precedence. Defaults to `lts/*` (latest LTS release).
+    required: false
+    default: lts/*
+  package-manager:
+    description: The package manager used to cache project dependencies. One of `npm || yarn || pnpm` . Only change this if you are using a custom install-command for these managers. Defaults to npm.
+    required: false
+    default: npm
+  install-command:
+    description: Overwrite the dependency install command. Defaults to `npm ci --ignore-scripts`.
+    required: false
+    default: npm ci --ignore-scripts
+
+outputs:
+  node-version:
+    description: The node version the environment configured.
+    value: ${{ steps.node-version.outputs.version || inputs.node-version }}
+
+runs:
+  using: composite
+  steps:
+    - uses: actions/checkout@v2
+      name: Checkout
+      with:
+        branch: ${{ inputs.branch }}
+        fetch-depth: ${{ inputs.fetch-depth }}
+        submodule: ${{ inputs.submodules }}
+    - run: echo "::set-output name=version::$(jq -r .engines.node package.json)"
+      name: Get Node Version
+      id: node-version
+      shell: bash
+    - uses: actions/setup-node@v2
+      name: Setup Node
+      with:
+        node-version: ${{ steps.node-version.outputs.version || inputs.node-version }}
+        cache: ${{ inputs.package-manager }}
+    - run: ${{ inputs.install-command }}
+      name: Install Deps
+      shell: bash
+
