@@ -2,10 +2,10 @@ name: Setup JS Env
 description: Configures the CI environment for a JS project, checks out the current branch, installs node, installs dependencies and caches them. Assumes running in an environment that supports bash.
 
 inputs:
-  branch:
-    description: Proxies the Githubs actions/checkout@v2 config. The default is the branch that trigged the containing workflow.
+  ref:
+    description: Proxies the Githubs actions/checkout@v2 config. The default is the ref that trigged the containing workflow.
     required: false
-    default: ${{ github.repository }}
+    default: ''
   fetch-depth:
     description: Proxies the Githubs actions/checkout@v2 config.
     required: false
@@ -38,9 +38,9 @@ runs:
     - uses: actions/checkout@v2
       name: Checkout
       with:
-        branch: ${{ inputs.branch }}
+        ref: ${{ inputs.ref }}
         fetch-depth: ${{ inputs.fetch-depth }}
-        submodule: ${{ inputs.submodules }}
+        submodules: ${{ inputs.submodules }}
     - run: echo "::set-output name=version::$(jq -r .engines.node package.json)"
       name: Get Node Version
       id: node-version

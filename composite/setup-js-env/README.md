@@ -6,7 +6,7 @@ Internally it uses Githubs built in `actions/checkout@v2` and `actions/setup-nod
 
 ### Steps:
 
-1. Checks out the branch that triggered the workflow or the passed in `branch`.
+1. Checks out the ref that triggered the workflow or the passed in `ref`.
 2. Attempts to extract the node version to setup from the `engines.node` field in `package.json`. Defaults to latest long term support version if not found or the passed in `node-version`. (note: `package.json` version always takes precedence).
 3. Installs node.
 4. Setups up dependency caching for installed modules. Defaults to `npm` as the dependency configuration but you can also specify `yarn` or `pnpm` with a passed in `package-manager`.
@@ -38,7 +38,7 @@ See [this example](../../.github/workflows/setup-js-env.example.yml) for how to 
 
 | Param | Description |
 |:------|:------------|
-| `branch` | Proxies the Githubs actions/checkout@v2 config. The default is the branch that trigged the containing workflow.
+| `ref` | Proxies the Githubs actions/checkout@v2 config. The default is the ref that trigged the containing workflow.
 | `fetch-depth` | Proxies the Githubs actions/checkout@v2 config.
 | `submodules` | Proxies to Githubs actions/checkout@v2 config.
 | `node-version` | The version of node to install. It will automatically attempt to extract the node version from the engines field in package.json and that always takes precedence. Defaults to `lts/*` (latest LTS release).

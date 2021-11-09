@@ -16,7 +16,7 @@ jobs:
     steps:
       - uses: fena-co/actions/composite/setup-js-env@feature/setup-node-env-composite-action
         with:
-          branch: develop
+          ref: develop
           fetch-depth: 0
           submodules: true
           node-version: 16
