@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/fena-co/actions/issues"
   },
-  "homepage": "https://github.com/fena-co/actions#readme"
+  "homepage": "https://github.com/fena-co/actions#readme",
+  "devDependencies": {
+    "eslint": "8.2.0"
+  }
 }
