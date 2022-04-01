@@ -44,7 +44,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Setup Env
-        uses: fena-co/actions/composite/setup-js-env@master
+        uses: fena-co/actions/composite/setup-js-env@develop
       - name: ✅ Lint
         run: ${{ env.lint_command }}
       - name: 🪞 Beauty Check

@@ -35,6 +35,11 @@ outputs:
 runs:
   using: composite
   steps:
+    - uses: unfor19/install-aws-cli-action@v1.0.2
+      name: install-aws-cli-action
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.STAGE_AWS_ACCESS_KEY }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.STAGE_AWS_SECRET_ACCESS_KEY }}
     - uses: actions/checkout@v2
       name: Checkout
       with:
