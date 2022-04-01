@@ -62,6 +62,7 @@ runs:
         node-version: ${{ steps.node-version.outputs.version || inputs.node-version }}
         cache: ${{ inputs.package-manager }}
     - run: aws codeartifact login --tool npm --repository fena --domain repo --domain-owner 578657107977
+      name: Set up AWS CodeArtifact
     - run: ${{ inputs.install-command }}
       name: Install Deps
       shell: bash
