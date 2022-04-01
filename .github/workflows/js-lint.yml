@@ -3,6 +3,14 @@ name: ✅ Lint & 🪞 Beauty Check
 on:
   workflow_call:
     inputs:
+      aws-access-key:
+        description: AWS access key
+        required: true
+        type: string
+      aws-secret-access-key:
+        description: AWS secret access key
+        required: true
+        type: string
       lint_command:
         description: The command to run for linting. Defaults to `npx eslint "**/*.js" --ignore-path .gitignore`. This will respect your local eslint config and ignore anything defined in your .gitignore e.g. `node_modules`.
         default: npx eslint "{0}" {1}
@@ -45,6 +53,9 @@ jobs:
     steps:
       - name: Setup Env
         uses: fena-co/actions/composite/setup-js-env@develop
+        with:
+          aws-access-key: ${{ inputs.aws-access-key }}
+          aws-secret-access-key: ${{ inputs.aws-secret-access-key }}
       - name: ✅ Lint
         run: ${{ env.lint_command }}
       - name: 🪞 Beauty Check
