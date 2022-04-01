@@ -61,7 +61,7 @@ runs:
       with:
         node-version: ${{ steps.node-version.outputs.version || inputs.node-version }}
         cache: ${{ inputs.package-manager }}
-    - run: aws codeartifact login --tool npm --repository fena --domain repo --domain-owner 578657107977
+    - run: aws codeartifact login --tool npm --repository fena --domain repo --domain-owner 578657107977 --region eu-west-2
       name: Set up AWS CodeArtifact
       shell: bash
     - run: ${{ inputs.install-command }}
