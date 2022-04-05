@@ -8,6 +8,9 @@ inputs:
   aws-secret-access-key:
     description: AWS secret access key
     required: true
+  role-to-assume:
+    description: AWS IAM role for CI
+    required: true
   ref:
     description: Proxies the Githubs actions/checkout@v2 config. The default is the ref that trigged the containing workflow.
     required: false
@@ -40,6 +43,9 @@ outputs:
 
 runs:
   using: composite
+  permissions:
+      id-token: write
+      contents: read
   steps:
     - uses: unfor19/install-aws-cli-action@v1.0.2
       name: install-aws-cli-action
@@ -52,6 +58,7 @@ runs:
         aws-region: eu-west-2
         aws-access-key-id: ${{ inputs.aws-access-key }}
         aws-secret-access-key: ${{ inputs.aws-secret-access-key }}
+        role-to-assume: ${{ inputs.role-to-assume }}
     - uses: actions/checkout@v2
       name: Checkout
       with:
