@@ -3,13 +3,13 @@ name: ✅ Lint & 🪞 Beauty Check
 on:
   workflow_call:
     secrets:
-      aws-access-key:
+      AWS_ACCESS_KEY:
         description: AWS access key
         required: true
-      aws-secret-access-key:
+      AWS_SECRET_ACCESS_KEY:
         description: AWS secret access key
         required: true
-      role-to-assume:
+      IAM_ROLE_CI:
         description: AWS IAM role for CI
         required: true
     inputs:
@@ -56,9 +56,9 @@ jobs:
       - name: Setup Env
         uses: fena-co/actions/composite/setup-js-env@develop
         with:
-          aws-access-key: ${{ secrets.aws-access-key }}
-          aws-secret-access-key: ${{ secrets.aws-secret-access-key }}
-          role-to-assume: ${{ secrets.role-to-assume }}
+          AWS_ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          IAM_ROLE_CI: ${{ secrets.IAM_ROLE_CI }}
       - name: ✅ Lint
         run: ${{ env.lint_command }}
       - name: 🪞 Beauty Check
