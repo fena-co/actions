@@ -55,7 +55,6 @@ runs:
         aws-region: eu-west-2
         aws-access-key-id: ${{ inputs.AWS_ACCESS_KEY }}
         aws-secret-access-key: ${{ inputs.AWS_SECRET_ACCESS_KEY }}
-        role-to-assume: ${{ inputs.IAM_ROLE_CI }}
     - uses: actions/checkout@v2
       name: Checkout
       with:
