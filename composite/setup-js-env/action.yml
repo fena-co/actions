@@ -43,9 +43,6 @@ outputs:
 
 runs:
   using: composite
-  permissions:
-      id-token: write
-      contents: read
   steps:
     - uses: unfor19/install-aws-cli-action@v1.0.2
       name: install-aws-cli-action
