@@ -11,6 +11,9 @@ inputs:
   IAM_ROLE_CI:
     description: AWS IAM role for CI
     required: true
+  PAT_GITHUB_ACTIONS:
+    description: Personal access token for github actions
+    required: false
   ref:
     description: Proxies the Githubs actions/checkout@v2 config. The default is the ref that trigged the containing workflow.
     required: false
@@ -57,7 +60,16 @@ runs:
         aws-secret-access-key: ${{ inputs.AWS_SECRET_ACCESS_KEY }}
     - uses: actions/checkout@v2
       name: Checkout
+      if: ${{ inputs.PAT_GITHUB_ACTIONS == '' }}
       with:
+        ref: ${{ inputs.ref }}
+        fetch-depth: ${{ inputs.fetch-depth }}
+        submodules: ${{ inputs.submodules }}
+    - uses: actions/checkout@v2
+      name: Checkout
+      if: ${{ inputs.PAT_GITHUB_ACTIONS != '' }}
+      with:
+        token: ${{ inputs.PAT_GITHUB_ACTIONS }}
         ref: ${{ inputs.ref }}
         fetch-depth: ${{ inputs.fetch-depth }}
         submodules: ${{ inputs.submodules }}
